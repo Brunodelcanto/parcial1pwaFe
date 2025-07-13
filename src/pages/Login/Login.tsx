@@ -44,21 +44,24 @@ const {
     resolver: joiResolver(validationSchema),
 });
 
-const onSubmit = async (data: LoginFormInputs) => {
+const onLogin = async (user: LoginFormInputs) => {
     const sendData = {
-        username: data.username,
-        email: data.email,
+        username: user.username,
+        email: user.email,
         isActive: true,
     };
     try {
         const response = await axios.post("http://localhost:3000/api/users", sendData);
-        // almacenamiento de los datos en local storage
-        localStorage.setItem("userId", response.data._id);
-        localStorage.setItem("username", response.data.username);
-        localStorage.setItem("email", response.data.email);
+        const user = response.data.data;
+        if (user) {
+               // almacenamiento de los datos en local storage
+        localStorage.setItem("userId", user._id);
+        localStorage.setItem("username", user.username);
+        localStorage.setItem("email", user.email);
         // redireccionamiento a la pantalla de post al crear el usuario
         navigate("/posts");
         console.log("User created successfully:", response.data);
+        }
 
      } catch (err) {
         console.error("Error creating user:", err);
@@ -68,13 +71,13 @@ const onSubmit = async (data: LoginFormInputs) => {
 return (
     <div>
         <h1>Login</h1>
-        <p>Por favor ingrese sus datos</p>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <p>Please enter your details</p>
+        <form onSubmit={handleSubmit(onLogin)}>
             <input type="text" placeholder="Username" {...register("username")} />
             {errors.username && <span>{errors.username.message}</span>}
             <input type="text" placeholder="Email" {...register("email")} />
             {errors.email && <span>{errors.email.message}</span>}
-            <button type="submit">Crear Usuario</button>
+            <button type="submit">Create User</button>
         </form>
     </div>
     );

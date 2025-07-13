@@ -1,0 +1,8 @@
+.postsContainer {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.postsContainer:hover {
+    background-color: #f0f0f0;
+}
