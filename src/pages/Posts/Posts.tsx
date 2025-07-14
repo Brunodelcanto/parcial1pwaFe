@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "./Posts.module.css";
+import { HomeButton } from "../../components/HomeButton";
 
 type Posts = {
     _id?: string;
@@ -77,7 +78,6 @@ const Posts = () => {
             <h1>Posts Page</h1>
             <h2>Welcome, {username}</h2>
             <p>This is the posts page where you can view all posts.</p>
-
             {loading && <p>Loading posts...</p>}
             {error && <p>Error fetching data: {error.message}</p>}
             {posts && (
@@ -99,6 +99,7 @@ const Posts = () => {
                 </ul>
             )}
             <button onClick={goToCreatePost}>Crear post</button>
+            <HomeButton />
         </div>
     )
 }

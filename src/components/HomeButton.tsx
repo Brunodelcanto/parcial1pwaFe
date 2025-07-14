@@ -1,3 +1,3 @@
 import { Link } from "react-router"
 
-export const HomeButton = () => <Link to="/">Go back</Link>
+export const HomeButton = () => <Link to="/home">Go back</Link>

@@ -5,6 +5,8 @@ import  Login  from './pages/Login/Login.tsx'
 import Posts from './pages/Posts/Posts.tsx';
 import Post from './pages/Posts/components/Post.tsx';
 import CreatePost from './pages/Posts/components/CreatePost.tsx';
+import Users from './pages/Login/Users/Users.tsx';
+import Home from './pages/Home/Home.tsx';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
   {
     path: "/createPost",
     element: <CreatePost />,  
+  },
+  {
+    path: "/users",
+    element: <Users />,
+  },
+  {
+    path: "/home",
+    element: <Home />,
   }
 ]);
 

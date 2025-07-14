@@ -3,6 +3,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import axios from "axios";
 import Joi from "joi";
 import { useForm } from "react-hook-form";
+import { HomeButton } from "../../../components/HomeButton";
 
 type CreatePostFormInputs = {
     _id?: string;
@@ -76,6 +77,7 @@ const CreatePost = () => {
                 </div>
                 <button type="submit">Create Post</button>
             </form>
+            <HomeButton />
         </div>
     )
 }

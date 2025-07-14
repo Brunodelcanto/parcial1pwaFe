@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { HomeButton } from "../../../components/HomeButton";
 
 type PostType = {
   _id: string;
@@ -67,6 +68,7 @@ const Post = () => {
       <label>Content:</label>
       <textarea value={content} onChange={(e) => setContent(e.target.value)} />
       <button onClick={handleUpdate}>Save Changes</button>
+      <HomeButton />
     </div>
   );
 };
