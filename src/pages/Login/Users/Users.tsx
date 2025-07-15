@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./Users.module.css";
 import { HomeButton } from "../../../components/HomeButton";
+import { FaUser } from "react-icons/fa";
+
 
 type User = {
     _id?: string;
@@ -20,7 +22,6 @@ const Users = () => {
         try {
             const response = await axios.get("http://localhost:3000/api/users");
             setUsers(response.data.data);
-            console.log(response.data);
         } catch (err) {
             if (err instanceof Error) {
                 setError(err);
@@ -64,22 +65,24 @@ const Users = () => {
     const username = localStorage.getItem("username");
     
     return (
-        <div>
+        <div className={styles.container}>
             <h1>Users list</h1>
+            <div className={styles.iconContainer}><FaUser className={styles.icon} /></div>
             <h2>Welcome, {username}</h2>
             <p>This is the users page where you can view all and manage users.</p>
             {loading && <p>Loading users...</p>}
             {error && <p>Error fetching data: {error.message}</p>}
             {users && (
-                <ul>
+                <ul className={styles.usersList}>
                     {users.map((item: User) => (
-                        <li key={item._id} className={styles.userCard}>
+                        <li key={item._id} className={`${styles.userContainer} ${!item.isActive ? styles.inactiveUser : ''}`}>
+                             <div className={styles.iconContainer}><FaUser className={styles.icon} /></div>
                             <h2>{item.username}</h2>
                             <p>Email: {item.email}</p>
                             <p>Status: {item.isActive ? "Active" : "Inactive"}</p>
-                            <button 
+                            <button
                                 // OnClick con dos condiciones: si el usuario está activo, desactivarlo; si no, activarlo
-                                onClick={() => item.isActive ? handleDeactivate(item._id!) : handleActive(item._id!)} className={styles.ActDecButton}>
+                                onClick={() => item.isActive ? handleDeactivate(item._id!) : handleActive(item._id!)} className={styles.actDesButton}>
                                 {/* Texto del botón segun su condicion */}
                                 {item.isActive ? "Deactivate" : "Activate"}
                             </button>

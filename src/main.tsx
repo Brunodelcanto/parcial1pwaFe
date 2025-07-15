@@ -7,6 +7,7 @@ import Post from './pages/Posts/components/Post.tsx';
 import CreatePost from './pages/Posts/components/CreatePost.tsx';
 import Users from './pages/Login/Users/Users.tsx';
 import Home from './pages/Home/Home.tsx';
+import './styles/global.css'
 
 const router = createBrowserRouter([
   {

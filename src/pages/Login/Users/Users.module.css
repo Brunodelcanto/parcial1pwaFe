@@ -1,0 +1,116 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+
+.container h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.container p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+
+.usersList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;  
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.userContainer {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  width: 250px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.userContainer:hover {
+      background-color: #f1f1f1;
+    transform: scale(1.02);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.userContainer h2{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.userContainer p {
+    font-size: 1.2rem;
+    margin: 4px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.actDesButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.actDesButton:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.actDesButton:active {
+  background-color: #003f88; 
+  transform: scale(0.98);
+}
+
+.inactiveUser {
+  background-color: #ffe5e5;
+  border: 1px solid #cc0000;
+  opacity: 0.8;
+}
+
+.inactiveUser h2,
+.inactiveUser p {
+  color: #a10000;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+

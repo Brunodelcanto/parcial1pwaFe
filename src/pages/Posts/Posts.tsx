@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "./Posts.module.css";
 import { HomeButton } from "../../components/HomeButton";
+import { AiFillLike} from "react-icons/ai";
+import { FaPencilAlt } from "react-icons/fa";
+import { TbFileLike } from "react-icons/tb";
+import { BsFilePostFill } from "react-icons/bs";
 
 type Posts = {
     _id?: string;
@@ -10,7 +14,6 @@ type Posts = {
     content: string;
     author: {username: string};
     likes: string[];
-    edited: boolean;
 };
 
 const Posts = () => {
@@ -74,31 +77,32 @@ const Posts = () => {
     const username = localStorage.getItem("username");
 
     return(
-        <div>
+        <div className={styles.postsPage}>
             <h1>Posts Page</h1>
+            <div className={styles.iconContainer}><BsFilePostFill className={styles.icon} /></div>
             <h2>Welcome, {username}</h2>
             <p>This is the posts page where you can view all posts.</p>
             {loading && <p>Loading posts...</p>}
             {error && <p>Error fetching data: {error.message}</p>}
             {posts && (
-                <ul>
+                <ul className={styles.postsList}>
                     {posts.map((item: Posts) => (
                         <li key={item._id} className={styles.postsContainer} onClick={() => goToPost(item._id!)}>
                             <h2>{item.title}</h2>
                             <p>{item.content}</p>
-                            <p>Author: {item.author.username}</p>
-                            <p>Likes: {item.likes.length}</p>
-                            <button 
+                            <div className={styles.textWithIcon}><FaPencilAlt className={styles.inlineIcon} /><span>{item.author.username}</span></div>
+                            <div className={styles.textWithIcon}><TbFileLike className={styles.inlineIcon} /><span>{item.likes.length}</span></div>
+                            <button className={styles.likeButton}
                             onClick={(e) => {
                                 // Utilizamos e.stopPropagation() para evitar que el click en el botón redireccione al post
                                 e.stopPropagation();
                                 handleLike(item._id!);
-                            }}>👍</button>
+                            }}><AiFillLike /></button>
                         </li>
                     ))}
                 </ul>
             )}
-            <button onClick={goToCreatePost}>Crear post</button>
+            <button className={styles.createPostButton} onClick={goToCreatePost}>Create post</button>
             <HomeButton />
         </div>
     )

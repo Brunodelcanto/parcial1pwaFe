@@ -3,6 +3,8 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import Joi from "joi";
 import { useNavigate } from "react-router";
+import styles from "./Login.module.css";
+import { FaUser } from "react-icons/fa";
 
 
 type LoginFormInputs = {
@@ -15,19 +17,19 @@ type LoginFormInputs = {
 // validaciones
 const validationSchema = Joi.object<LoginFormInputs>({
     username: Joi.string().min(3).max(30).required().messages({
-        "string.base": "Username must be a string",
-        "string.empty": "Username is required",
-        "string.min": "Username must be at least 3 characters long",
-        "string.max": "Username must be at most 30 characters long",
-        "any.required": "Username is required",
+        "string.base": "Username must be a string ⚠️",
+        "string.empty": "Username is required ⚠️",
+        "string.min": "Username must be at least 3 characters long ⚠️",
+        "string.max": "Username must be at most 30 characters long ⚠️",
+        "any.required": "Username is required ⚠️",
     }),
     email: Joi.string().pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).min(3).max(30).required().messages({
-        "string.base": "Email must be a string",
-        "string.empty": "Email is required",
-        "any.required": "Email is required",
-        "string.min": "Email must be at least 3 characters long",
-        "string.max": "Email must be at most 30 characters long",
-        "string.pattern.base": "Email must be a valid email address",
+        "string.base": "Email must be a string ⚠️",
+        "string.empty": "Email is required ⚠️",
+        "any.required": "Email is required ⚠️",
+        "string.min": "Email must be at least 3 characters long ⚠️",
+        "string.max": "Email must be at most 30 characters long ⚠️",
+        "string.pattern.base": "Email must be a valid email address ⚠️",
     })
 })
 
@@ -60,7 +62,6 @@ const onLogin = async (user: LoginFormInputs) => {
         localStorage.setItem("email", user.email);
         // redireccionamiento a la pantalla de post al crear el usuario
         navigate("/posts");
-        console.log("User created successfully:", response.data);
         }
 
      } catch (err) {
@@ -69,15 +70,16 @@ const onLogin = async (user: LoginFormInputs) => {
     };
 
 return (
-    <div>
+    <div className={styles.container}>
+        <form onSubmit={handleSubmit(onLogin)} className={styles.form}>
         <h1>Login</h1>
+        <div className={styles.iconContainer}><FaUser className={styles.icon} /></div>
         <p>Please enter your details</p>
-        <form onSubmit={handleSubmit(onLogin)}>
-            <input type="text" placeholder="Username" {...register("username")} />
-            {errors.username && <span>{errors.username.message}</span>}
-            <input type="text" placeholder="Email" {...register("email")} />
-            {errors.email && <span>{errors.email.message}</span>}
-            <button type="submit">Create User</button>
+            <input type="text" placeholder="Username" {...register("username")} className={styles.input} />
+            {errors.username && <span className={styles.error}>{errors.username.message}</span>}
+            <input type="text" placeholder="Email" {...register("email")} className={styles.input} />
+            {errors.email && <span className={styles.error}>{errors.email.message}</span>}
+            <button type="submit" className={styles.button}>Create User</button>
         </form>
     </div>
     );
